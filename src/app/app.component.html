@@ -1,4 +1,88 @@
-<hello name="{{ name }}"></hello>
-<p>
+<!--<hello name="{{ name }}"></hello> -->
+<h1>Candidate </h1>
+<!--<p>
   Start editing to see some magic happen :)
-</p>
+</p>-->
+<!--
+<input type="checkbox" id="checkox1" value = "male">male
+<input type="checkbox" id="checkox2" value = "Female">Female
+-->
+
+<ul class="checkbox-items">
+  <li *ngFor="let item of checkboxesDataList">
+    <input type="checkbox" [(ngModel)]="item.email" (change)="changeSelection()">{{item.email}}
+  </li>
+</ul>
+
+
+<h1>Checklist</h1>
+<div class="row">
+  <!--
+    <div class="col-md-4">
+      <h4>List of Hobbies</h4>
+
+      <ul class="checkbox-items">
+        <li *ngFor="let item of checkboxesDataList">
+          <input type="checkbox" name="" id="" [(ngModel)]="item.isChecked" (change)="changeSelection()">{{item.label}}
+        </li>
+      </ul>
+    </div>
+  -->
+  <div class="col-md-4">
+
+  </div>
+  <table>
+    <tbody>
+      <tr *ngFor="let item of selectedItemsList;">
+        <td>{{item.id}}</td>
+        <td>{{item.first_name}}</td>
+        <td>{{item.last_name}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.gender}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+  <div class="col-md-4">
+    <h4>Object</h4>
+    <code>
+      {{selectedItemsList | json}}
+      </code>
+
+    <h4>Array of IDs</h4>
+    <code>{{checkedIDs}}</code>
+  </div>
+
+</div>
+
+<br> <br><br>
+<table>
+  <tbody>
+    <tr *ngFor="let Results of checkboxesDataList;">
+      <td>{{Results.id}}</td>
+      <td>{{Results.first_name}}</td>
+      <td>{{Results.last_name}}</td>
+      <td>{{Results.email}}</td>
+      <td>{{Results.gender}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1> Add New Candidate </h1>
+<form #userData="ngForm" (ngSubmit)="onClicksubmit(userData.value)">
+  <input type= "text" name = "first_name" placeholder="first_name" ngModel>
+  <input type= "text" name = "last_name" placeholder="last_name" ngModel>
+  <input type= "text" name = "email" placeholder="email" ngModel>
+  <br> <br>
+
+  <input type="radio" id="female" value="female" ngModel required >female
+  <input type="radio" id="male"  value="male">male
+
+  <input type="submit" value="Add">
+</form>
